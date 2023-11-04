@@ -74,5 +74,13 @@ RSpec.describe Post, type: :model do
     it 'returns five comments' do
       expect(@post.five_recent_comments.length).to eq 5
     end
+
+    it 'returns most recent comments with texts 4, 5, 6, 7, 8' do
+      texts = []
+      @post.five_recent_comments.each do |comment|
+        texts.push(comment.text.to_i)
+      end
+      expect(texts).to contain_exactly(4, 5, 6, 7, 8)
+    end
   end
 end

@@ -5,7 +5,7 @@ RSpec.describe Post, type: :model do
     @author = User.create(name: 'John', posts_counter: 0)
   end
 
-  context 'validations' do
+  context 'title validations' do
     it 'is not valid without a title' do
       post = Post.new(title: nil)
       expect(post).not_to be_valid
@@ -22,7 +22,9 @@ RSpec.describe Post, type: :model do
       expect(post).not_to be_valid
       expect(post.errors[:title]).to include('is too long (maximum is 250 characters)')
     end
+  end
 
+  context 'counters validations' do
     it 'allows only integer values for comments_counter' do
       post = Post.new(author: @author, title: 'A valid title', comments_counter: 'text', likes_counter: 0)
       expect(post).not_to be_valid

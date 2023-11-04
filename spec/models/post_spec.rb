@@ -85,4 +85,14 @@ RSpec.describe Post, type: :model do
       expect(texts).to contain_exactly(4, 5, 6, 7, 8)
     end
   end
+
+  context 'update_posts_counter' do
+    before :all do
+      8.times { Post.create(author: @author, title: 'Harry Potter', comments_counter: 0, likes_counter: 0) }
+    end
+
+    it 'keeps track of posts and equals 9' do
+      expect(@author.posts_counter).to eq 9
+    end
+  end
 end

@@ -34,4 +34,23 @@ RSpec.describe User, type: :model do
       expect(user).not_to be_valid
     end
   end
+
+  context 'three_recent_posts' do
+    before :all do
+      @user = User.create(name: 'John', posts_counter: 0)
+      5.times { |post_i| Post.create(author: @user, title: (post_i + 1).to_s, comments_counter: 0, likes_counter: 0) }
+    end
+
+    it 'returns three posts' do
+      expect(@user.three_recent_posts.length).to eq 3
+    end
+
+    it 'returns most recent posts with titles 3, 4, 5' do
+      titles = []
+      @user.three_recent_posts.each do |post|
+        titles.push(post.title.to_i)
+      end
+      expect(titles).to all(be_between(3, 5))
+    end
+  end
 end

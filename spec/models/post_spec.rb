@@ -64,4 +64,6 @@ RSpec.describe Post, type: :model do
       expect(post).to be_valid
     end
   end
+
+  
 end

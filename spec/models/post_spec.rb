@@ -1,11 +1,11 @@
 require 'rails_helper'
 
 RSpec.describe Post, type: :model do
-  context 'validations' do
-    before :all do
-      @author = User.create(name: 'John')
-    end
+  before :all do
+    @author = User.create(name: 'John', posts_counter: 0)
+  end
 
+  context 'validations' do
     it 'is not valid without a title' do
       post = Post.new(title: nil)
       expect(post).not_to be_valid
@@ -65,5 +65,14 @@ RSpec.describe Post, type: :model do
     end
   end
 
-  
+  context '#five_recent_comments' do
+    before :all do
+      @post = Post.create(author: @author, title: 'Title', comments_counter: 0, likes_counter: 0)
+      8.times { |comment_i| Comment.create(user: @author, post: @post, text: (comment_i + 1).to_s) }
+    end
+
+    it 'returns five comments' do
+      expect(@post.five_recent_comments.length).to eq 5
+    end
+  end
 end

@@ -13,7 +13,7 @@ RSpec.describe 'Users', type: :request do
     it 'renders the index template' do
       expect(response).to render_template('index')
     end
-    
+
     it 'includes the placeholder text' do
       expect(response.body).to include('Show all users in a list')
     end

@@ -1,2 +1,26 @@
-<h1>Show all post by user in a list:</h1>
+<h1>ALL POSTS BY USER</h1>
 
+<div class="user-div">
+  <img class="photo" src=<%= @user.photo %> alt="user">
+  <div class= "user-details">
+    <h2><%= @user.name %></h2>
+    <p>Number of posts: <%= @user.posts_counter %></p>
+  </div>
+</div>
+
+<div class="user-posts">
+  <% @posts.each do |post| %>
+    <div class="post">
+      <h2><%= link_to post.title, user_post_path(post.author, post) %></h2>
+      <p><%= post.text %></p>
+      <p class="counter">Comments: <%= post.comments_counter %>, Likes: <%= post.likes_counter %></p>
+    </div>
+    <div class="comments">
+      <% post.five_recent_comments.each do |comment| %>
+        <p>
+          <strong><%= comment.user.name %> :</strong> <%= comment.text %>
+        </p>
+      <% end %>
+    </div>
+  <% end %>
+</div>

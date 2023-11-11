@@ -1,7 +1,8 @@
 class PostsController < ApplicationController
+  before_action :set_user, only: [:index, :new, :create]
+
   def index
-    @user = User.find(params[:user_id])
-    @posts = Post.where(author_id: params[:user_id])
+    @posts = @user.posts
   end
 
   def show
@@ -9,11 +10,11 @@ class PostsController < ApplicationController
   end
 
   def new
-    @post = post.new
+    @post = @user.post.build
   end
 
   def create
-    @post = current_user.posts.build(post_params)
+    @post = @user.post.build(post_params)
 
     if @post.save
       redirect_to user_post_path(@user, @post), notice: 'Post was successfully created'
@@ -23,6 +24,10 @@ class PostsController < ApplicationController
   end
 
   private
+
+  def set_user
+    @user = User.find(params[:user_id])
+  end
 
   def post_params
     params.require(:post).permit(:title, :text)

@@ -1,7 +1,7 @@
 class Post < ApplicationRecord
+  belongs_to :author, class_name: 'User'
   has_many :comment
   has_many :like
-  belongs_to :author, class_name: 'User'
   after_save :update_posts_counter
 
   validates :title, presence: true

@@ -16,7 +16,7 @@ RSpec.describe 'Posts', type: :request do
     end
 
     it 'includes the placeholder text' do
-      expect(response.body).to include('Show all post by user in a list:')
+      expect(response.body).to include('ALL POSTS BY USER')
     end
   end
 

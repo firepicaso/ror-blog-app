@@ -2,7 +2,7 @@ class PostsController < ApplicationController
   before_action :set_user, only: [:index, :new, :create]
 
   def index
-    @posts = @user.posts
+    @posts = @user.post
   end
 
   def show

@@ -25,3 +25,9 @@
 .post-header {
   padding: 1rem;
 }
+
+.new-post-form {
+  display: flex;
+  flex-direction: column;
+  border: 1px solide black;
+}

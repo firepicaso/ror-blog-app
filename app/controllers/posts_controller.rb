@@ -1,5 +1,6 @@
 class PostsController < ApplicationController
-  before_action :set_user, only: %i[index new create]
+  before_action :set_user, only: [:index, :new, :create]
+  before_action :find_post, only: [:show]
   before_action :initialize_like
 
   def index
@@ -15,10 +16,11 @@ class PostsController < ApplicationController
   end
 
   def create
-    @post = current_user.post.build(post_params)
+    @post = Post.new(post_params)
+    @post.author = @user
 
     if @post.save
-      redirect_to user_post_path(current_user, @post), notice: 'Post was successfully created'
+      redirect_to user_post_path(@user, @post), notice: 'Post was successfully created'
     else
       render :new
     end
@@ -28,6 +30,10 @@ class PostsController < ApplicationController
 
   def set_user
     @user = User.find(params[:user_id])
+  end
+
+  def find_post
+    @post = Post.find(params[:id])
   end
 
   def post_params

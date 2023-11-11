@@ -1,5 +1,6 @@
 class PostsController < ApplicationController
   before_action :set_user, only: [:index, :new, :create]
+  before_action :initialize_like
 
   def index
     @posts = @user.post
@@ -31,5 +32,9 @@ class PostsController < ApplicationController
 
   def post_params
     params.require(:post).permit(:title, :text)
+  end
+
+  def initialize_like
+    @like = Like.new
   end
 end

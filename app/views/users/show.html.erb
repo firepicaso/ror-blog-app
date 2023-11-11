@@ -16,6 +16,7 @@
 </div>
 
 <div class="user-posts">
+  <h2>Posts</h2>
   <% @user.post.limit(3).each do |post| %>
     <div class="post">
       <h2><%= link_to post.title, user_post_path(post.author, post) %></h2>
@@ -23,10 +24,14 @@
       <p class="counter">Comments: <%= post.comments_counter %>, Likes: <%= post.likes_counter %></p>
     </div>
   <% end %>
+  </br>
+  <button class="see-all-posts">
+    <%= link_to "Create A Post", new_user_post_path(@user) %>
+  </button>
 </div>
 
 <div class="button-div">
   <button class="see-all-posts">
-    <%= link_to "See all posts", user_posts_path(@user) %>
+    <%= link_to "See All Posts", user_posts_path(@user) %>
   </button>
 </div>

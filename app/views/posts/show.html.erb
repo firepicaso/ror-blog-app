@@ -12,5 +12,12 @@
     <% @post.comment.each do |comment| %>
       <p><%= comment.user.name %>: <%= comment.text %></p>
     <% end %>
+    </br>
+    <%= link_to "Add comment", new_user_post_comment_path(@post.author, @post) %>
+  </div>
+  <div class="post-like">
+    <%= form_with(model: [@post, @like], url: user_post_likes_path(@post.author, @post), method: :post) do |form| %>
+      <%= form.submit 'Like' %>
+    <% end %>
   </div>
 </div>

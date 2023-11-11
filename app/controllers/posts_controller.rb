@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-  before_action :set_user, only: [:index, :new, :create]
+  before_action :set_user, only: %i[index new create]
   before_action :find_post, only: [:show]
   before_action :initialize_like
 

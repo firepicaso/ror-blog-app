@@ -25,3 +25,23 @@
 .photo {
     width: 100px;
 }
+
+.user-bio,
+.user-posts,
+.button-div {
+    padding: 1rem;
+}
+
+.post {
+    margin-top: 1rem;
+}
+
+.see-all-posts {
+    background-color: white;
+    border-radius: 0.5rem;
+    padding: 0.5rem;
+}
+
+.counter {
+    font-weight: 600;
+}

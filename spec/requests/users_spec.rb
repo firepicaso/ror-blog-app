@@ -34,7 +34,7 @@ RSpec.describe 'Users', type: :request do
     end
 
     it 'includes the placeholder text' do
-      expect(response.body).to include('Show specific user:')
+      expect(response.body).to include('Specific user:')
     end
   end
 end

@@ -49,7 +49,7 @@ group :development, :test do
   gem 'debug', platforms: %i[mri windows]
   gem 'rspec-rails'
   gem 'capybara'
-  gem 'webdrivers'
+  # gem 'webdrivers'
 end
 
 group :development do

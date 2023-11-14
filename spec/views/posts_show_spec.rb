@@ -7,8 +7,10 @@ RSpec.describe 'When I open post show page', type: :system do
     Post.delete_all
     User.delete_all
 
-    @first_user = User.create(name: 'Tom', photo: 'https://unsplash.com/photos/F_-0BxGuVvo', bio: 'Teacher from Mexico.', posts_counter: 0)
-    @second_user = User.create(name: 'Lilly', photo: 'https://unsplash.com/photos/F_-0BxGuVvo', bio: 'Teacher from Poland.', posts_counter: 0)
+    @first_user = User.create(name: 'Tom', photo: 'https://unsplash.com/photos/F_-0BxGuVvo',
+                              bio: 'Teacher from Mexico.', posts_counter: 0)
+    @second_user = User.create(name: 'Lilly', photo: 'https://unsplash.com/photos/F_-0BxGuVvo',
+                               bio: 'Teacher from Poland.', posts_counter: 0)
 
     body = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore'
 
@@ -20,7 +22,7 @@ RSpec.describe 'When I open post show page', type: :system do
       Comment.create(user: @second_user, post: @first_post, text: "Comment #{i}")
     end
 
-    10.times { Like.create(user: @second_user, post: @first_post) }    
+    10.times { Like.create(user: @second_user, post: @first_post) }
   end
 
   it "shows the post's title" do
@@ -35,7 +37,7 @@ RSpec.describe 'When I open post show page', type: :system do
 
   it 'shows how many comments it has' do
     visit user_post_path(@first_user, @first_post)
-    expect(page).to have_content('Comment 6')
+    expect(page).to have_content('Comments: 6')
   end
 
   it 'shows how many likes it has' do
@@ -51,7 +53,6 @@ RSpec.describe 'When I open post show page', type: :system do
 
   it 'shows the username of each commentor' do
     visit user_post_path(@first_user, @first_post)
-    sleep(10)
     expect(page).to have_text('Lilly:', count: 6)
   end
 end

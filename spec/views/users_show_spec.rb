@@ -14,97 +14,81 @@ RSpec.describe 'When I open user show page', type: :system do
 
     Post.create(author: @first_user, title: 'Title 1', comments_counter: 0, likes_counter: 0)
     Post.create(author: @first_user, title: 'Title 2', comments_counter: 0, likes_counter: 0)
-    Post.create(author: @first_user, title: 'Title 3', comments_counter: 0, likes_counter: 0)
-
-    @latest_post= Post.create(author: @first_user, title: 'Title 4', comments_counter: 0, likes_counter: 0)
+    @third_post = Post.create(author: @first_user, title: 'Title 3', comments_counter: 0, likes_counter: 0)
+    Post.create(author: @first_user, title: 'Title 4', comments_counter: 0, likes_counter: 0)
     Post.create(author: @second_user, title: 'Title 1', comments_counter: 0, likes_counter: 0)
     Post.create(author: @second_user, title: 'Title 2', comments_counter: 0, likes_counter: 0)
   end
 
-#   it 'shows the photos of users' do
-#     visit users_path
-#     sleep(1)
-#     click_link(href: user_path(@first_user))
-#     sleep(1)
-#     expect(page).to have_css('img[alt="photo"]')
+  it 'shows the photos of users' do
+    visit users_path
+    click_link(href: user_path(@first_user))
+    expect(page).to have_css('img[alt="photo"]')
 
-#     visit users_path
-#     sleep(1)
-#     click_link(href: user_path(@second_user))
-#     sleep(1)
-#     expect(page).to have_css('img[alt="photo"]')
-#   end
+    visit users_path
+    click_link(href: user_path(@second_user))
+    expect(page).to have_css('img[alt="photo"]')
+  end
 
-#   it 'shows the user\'s name' do
-#     visit users_path
-#     sleep(1)
-#     click_link(href: user_path(@first_user))
-#     sleep(1)
-#     expect(page).to have_content('Tom')
+  it 'shows the user\'s name' do
+    visit users_path
+    click_link(href: user_path(@first_user))
+    expect(page).to have_content('Tom')
 
-#     visit users_path
-#     sleep(1)
-#     click_link(href: user_path(@second_user))
-#     sleep(1)
-#     expect(page).to have_content('Lilly')
-#   end
+    visit users_path
+    click_link(href: user_path(@second_user))
+    expect(page).to have_content('Lilly')
+  end
 
-#   it 'shows the number of posts the user has written' do
-#     visit users_path
-#     sleep(1)
-#     click_link(href: user_path(@first_user))
-#     sleep(1)
-#     expect(page).to have_content('Number of posts: 8')
+  it 'shows the number of posts the user has written' do
+    visit users_path
+    click_link(href: user_path(@first_user))
+    expect(page).to have_content('Number of posts: 8')
 
-#     visit users_path
-#     sleep(1)
-#     click_link(href: user_path(@second_user))
-#     sleep(1)
-#     expect(page).to have_content('Number of posts: 4')
-#   end
+    visit users_path
+    click_link(href: user_path(@second_user))
+    expect(page).to have_content('Number of posts: 4')
+  end
 
-#   it 'shows the bio' do
-#     visit users_path
-#     sleep(1)
-#     click_link(href: user_path(@first_user))
-#     sleep(1)
-#     expect(page).to have_content('Teacher from Mexico.')
+  it 'shows the bio' do
+    visit users_path
+    click_link(href: user_path(@first_user))
+    expect(page).to have_content('Teacher from Mexico.')
 
-#     visit users_path
-#     sleep(1)
-#     click_link(href: user_path(@second_user))
-#     sleep(1)
-#     expect(page).to have_content('Teacher from Poland.')
-#   end
+    visit users_path
+    click_link(href: user_path(@second_user))
+    expect(page).to have_content('Teacher from Poland.')
+  end
 
-#   it 'shows the fist three posts' do
-#     visit users_path
-#     sleep(1)
-#     click_link(href: user_path(@first_user))
-#     sleep(1)
-#     expect(page).to have_content('Title 1')
-#     expect(page).to have_content('Title 2')
-#     expect(page).to have_content('Title 3')
+  it 'shows the fist three posts' do
+    visit users_path
+    click_link(href: user_path(@first_user))
+    expect(page).to have_content('Title 1')
+    expect(page).to have_content('Title 2')
+    expect(page).to have_content('Title 3')
+  end
 
-#   end
-
-#   it 'shows the view all post button' do
-#     visit users_path
-#     sleep(1)
-#     click_link(href: user_path(@first_user))
-#     sleep(1)
-#     expect(page).to have_link('See All Posts')
-#   end
+  it 'shows the view all post button' do
+    visit users_path
+    click_link(href: user_path(@first_user))
+    expect(page).to have_link('See All Posts')
+  end
 
   context 'When I click a user\'s post' do
     it 'redirects me to that post\'s show page' do
       visit users_path
-      sleep(1)
       click_link(href: user_path(@first_user))
-      sleep(1)
       click_link('Title 3')
-      sleep(1)
-      expect(page).to have_current_path(user_post_path(@first_user, post))
+      expect(page).to have_current_path(user_post_path(@first_user, @third_post))
+    end
+  end
+
+  context 'When I click to see all posts' do
+    it 'redirects me to the user\'s post\'s index page' do
+      visit users_path
+      click_link(href: user_path(@first_user))
+      click_link('See All Posts')
+      expect(page).to have_current_path("/users/#{@first_user.id}/posts")
     end
   end
 end

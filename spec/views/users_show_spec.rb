@@ -8,9 +8,9 @@ RSpec.describe 'When I open user show page', type: :system do
     User.delete_all
 
     @first_user = User.create(name: 'Tom', photo: 'https://unsplash.com/photos/F_-0BxGuVvo',
-    bio: 'Teacher from Mexico.', posts_counter: 0)
+                              bio: 'Teacher from Mexico.', posts_counter: 0)
     @second_user = User.create(name: 'Lilly', photo: 'https://unsplash.com/photos/F_-0BxGuVvo',
-    bio: 'Teacher from Poland.', posts_counter: 0)
+                               bio: 'Teacher from Poland.', posts_counter: 0)
 
     Post.create(author: @first_user, title: 'Title 1', comments_counter: 0, likes_counter: 0)
     Post.create(author: @first_user, title: 'Title 2', comments_counter: 0, likes_counter: 0)

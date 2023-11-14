@@ -59,5 +59,5 @@ RSpec.describe 'When I open post show page', type: :system do
   it 'shows the comment each commentor left' do
     visit user_post_path(@first_user, @first_post)
     expect(page).to have_content('Comment 6')
- end
+  end
 end

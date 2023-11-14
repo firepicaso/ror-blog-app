@@ -2,6 +2,11 @@ require 'rails_helper'
 
 RSpec.describe 'When I open user index page', type: :system do
   before :all do
+    Like.delete_all
+    Comment.delete_all
+    Post.delete_all
+    User.delete_all
+    
     @first_user = User.create(name: 'Tom', photo: 'https://unsplash.com/photos/F_-0BxGuVvo',
     bio: 'Teacher from Mexico.', posts_counter: 2)
     @second_user = User.create(name: 'Lilly', photo: 'https://unsplash.com/photos/F_-0BxGuVvo',

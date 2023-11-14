@@ -9,7 +9,7 @@
     <p>Comments: <%= @post.comments_counter %>, Likes: <%= @post.likes_counter %></p>
   </div>
   <div class="post-comment">
-    <% @post.comment.includes([:user]).each do |comment| %>
+    <% @post.comment.includes(:user).each do |comment| %>
       <p><%= comment.user.name %>: <%= comment.text %></p>
     <% end %>
     </br>

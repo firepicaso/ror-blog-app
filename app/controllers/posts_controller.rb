@@ -4,7 +4,7 @@ class PostsController < ApplicationController
   before_action :initialize_like
 
   def index
-    @posts = @user.post
+    @posts = @user.post.includes(:author)
   end
 
   def show

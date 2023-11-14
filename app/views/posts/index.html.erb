@@ -16,7 +16,7 @@
       <p class="counter">Comments: <%= post.comments_counter %>, Likes: <%= post.likes_counter %></p>
     </div>
     <div class="comments">
-      <% post.five_recent_comments.includes([:user]).each do |comment| %>
+      <% post.five_recent_comments.includes(:user).each do |comment| %>
         <p>
           <strong><%= comment.user.name %> :</strong> <%= comment.text %>
         </p>

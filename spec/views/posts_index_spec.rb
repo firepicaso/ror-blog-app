@@ -17,6 +17,8 @@ RSpec.describe 'When I open post index page', type: :system do
     @first_post = Post.create(author: @first_user, title: 'Title 1', text: body, comments_counter: 0, likes_counter: 0)
     Post.create(author: @first_user, title: 'Title 2', comments_counter: 0, likes_counter: 0)
     Post.create(author: @first_user, title: 'Title 3', comments_counter: 0, likes_counter: 0)
+    Post.create(author: @first_user, title: 'Title 4', comments_counter: 0, likes_counter: 0)
+    Post.create(author: @first_user, title: 'Title 5', comments_counter: 0, likes_counter: 0)
 
     (1..6).each do |i|
       Comment.create(user: @second_user, post: @first_post, text: "Comment #{i}")
@@ -37,7 +39,7 @@ RSpec.describe 'When I open post index page', type: :system do
 
   it 'shows total number of posts the user has written' do
     visit "/users/#{@first_user.id}/posts"
-    expect(page).to have_content('Number of posts: 6')
+    expect(page).to have_content('Number of posts: 10')
   end
 
   it "shows a post's title" do
@@ -64,6 +66,11 @@ RSpec.describe 'When I open post index page', type: :system do
   it 'shows how many likes a post has' do
     visit "/users/#{@first_user.id}/posts"
     expect(page).to have_content('Likes: 10')
+  end
+
+  it 'shows pagination if there are more posts than it can fit on the view' do
+    visit "/users/#{@first_user.id}/posts"
+    expect(page).to have_link('2', href: "/users/#{@first_user.id}/posts?page=2")
   end
 
   context 'When I click on a post' do

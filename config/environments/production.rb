@@ -64,6 +64,9 @@ Rails.application.configure do
   # want to log everything, set the level to "debug".
   config.log_level = ENV.fetch("RAILS_LOG_LEVEL", "info")
 
+  # ADDITION Defaul URL for mailer
+  config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+
   # Use a different cache store in production.
   # config.cache_store = :mem_cache_store
 

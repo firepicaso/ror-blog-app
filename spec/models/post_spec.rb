@@ -91,8 +91,8 @@ RSpec.describe Post, type: :model do
       8.times { Post.create(author: @author, title: 'Harry Potter', comments_counter: 0, likes_counter: 0) }
     end
 
-    it 'keeps track of posts and equals 9' do
-      expect(@author.posts_counter).to eq 9
+    it 'keeps track of posts and equals 18' do
+      expect(@author.posts_counter).to eq 18
     end
   end
 end

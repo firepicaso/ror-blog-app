@@ -3,7 +3,7 @@
 <ul class="users-container">
   <% @users.each do |user| %>
     <li class="user-div">
-      <img class="photo" src=<%= user.photo %> alt="user">
+      <img class="photo" src=<%= user.photo %> alt="photo">
       <div class= "user-details">
         <%= link_to user_path(user) do %>
           <h2><%= user.name %></h2>

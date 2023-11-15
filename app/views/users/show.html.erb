@@ -1,7 +1,7 @@
 <h1>Specific user:</h1>
 
 <div class="user-div">
-  <img class="photo" src=<%= @user.photo %> alt="user">
+  <img class="photo" src=<%= @user.photo %> alt="photo">
   <div class= "user-details">
     <h2><%= @user.name %></h2>
     <p>Number of posts: <%= @user.posts_counter %></p>
@@ -17,7 +17,7 @@
 
 <div class="user-posts">
   <h2>Posts</h2>
-  <% @user.post.limit(3).each do |post| %>
+  <% @user.post.order(created_at: :desc).limit(3).each do |post| %>
     <div class="post">
       <h2><%= link_to post.title, user_post_path(post.author, post) %></h2>
       <p><%= post.text %></p>

@@ -4,7 +4,8 @@ class PostsController < ApplicationController
   before_action :initialize_like
 
   def index
-    @posts = @user.post
+    @posts = @user.post.includes(:author).order(id: :asc)
+    @posts = @posts.paginate(page: params[:page], per_page: 3)
   end
 
   def show

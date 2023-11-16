@@ -1,7 +1,7 @@
 <h1>Specific user:</h1>
 
 <div class="user-div">
-  <img class="photo" src=<%= @user.photo %> alt="photo">
+  <%= image_tag(@user.photo, alt: "photo", class: "photo") if @user.photo.present? %>
   <div class= "user-details">
     <h2><%= @user.name %></h2>
     <p>Number of posts: <%= @user.posts_counter %></p>

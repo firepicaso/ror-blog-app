@@ -19,3 +19,11 @@
     padding: 20px;
     border: 1px solid black;
  }
+
+ .form {
+    margin-bottom: 1rem;
+ }
+
+ .actions {
+    text-align: center;
+ }

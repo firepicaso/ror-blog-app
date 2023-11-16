@@ -3,11 +3,11 @@ class Api::CommentsController < Api::ApplicationController
 
     def index
       @comments = @post.comment.order(created_at: :asc)
-      render json: @comments, only: [:text], status: :ok
+      render json: @comments, status: :ok
     end
   
     def create
-      @comment = @post.comment.build(comment_params.merge(user: @user))
+      @comment = @post.comment.new(comment_params.merge(user_id: current_user.id))
   
       if @comment.save
         render json: @comment, status: :created

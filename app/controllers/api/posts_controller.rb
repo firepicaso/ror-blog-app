@@ -5,7 +5,7 @@ class Api::PostsController < Api::ApplicationController
   def index
     # @posts = @user.post.includes(:author).order(id: :asc)
     
-    render json: @posts, only: [:title, :text], status: :ok #api/users/1/posts
+    render json: @posts, status: :ok #api/users/1/posts
   end
 
   private

@@ -13,3 +13,21 @@
  *= require_tree .
  *= require_self
  */
+
+.container-div {
+  margin: auto;
+  padding: 20px;
+  border: 1px solid black;
+}
+
+.form {
+  margin-bottom: 1rem;
+}
+
+.actions {
+  text-align: center;
+}
+
+.actions a:hover {
+  text-decoration: underline;
+}

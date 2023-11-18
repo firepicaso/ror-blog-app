@@ -1,0 +1,32 @@
+---
+openapi: 3.0.1
+info:
+  title: API V1
+  version: v1
+paths:
+  "/users/1/posts/":
+    get:
+      summary: Retrieves posts for a specific user
+      tags:
+      - Posts
+      responses:
+        '200':
+          description: posts found
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    title:
+                      type: string
+                required:
+                - title
+        '404':
+          description: user not found
+servers:
+- url: https://{defaultHost}
+  variables:
+    defaultHost:
+      default: http://127.0.0.1:3000/api

@@ -78,3 +78,5 @@ gem 'rails-controller-testing'
 gem 'devise', '~> 4.9'
 
 gem "jwt", "~> 2.7"
+
+gem "rswag", "~> 2.11"
